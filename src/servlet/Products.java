@@ -33,7 +33,7 @@ public class Products extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\" />");
-		out.println("<title>Metropolises DataSource Example</title>");
+		out.println("<title>Student Store</title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h3>Here are all products:</h3>");

@@ -26,13 +26,15 @@ public class ProductDAO {
 			statement.executeQuery("USE " + DatabaseInfo.MYSQL_DATABASE_NAME);
 
 			String s = "SELECT * FROM " + DatabaseContract.ProductTable.TABLE_NAME + ";";
-			System.out.println("shiiet");
 			PreparedStatement viaContinentStatement = connection.prepareStatement(s);
 			ResultSet resultSet = viaContinentStatement.executeQuery();
 
 			while (resultSet.next()) {
 				products.add(fetchProduct(resultSet));
 			}
+
+			resultSet.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -51,21 +53,7 @@ public class ProductDAO {
 		product.setName(resultSet.getString(DatabaseContract.ProductTable.COLUMN_NAME_NAME));
 		product.setImage(resultSet.getString(DatabaseContract.ProductTable.COLUMN_NAME_IMAGE));
 		product.setPrice(resultSet.getDouble(DatabaseContract.ProductTable.COLUMN_NAME_PRICE));
-		System.out.println(product);
 
 		return product;
 	}
-
-//	public void setDataSource() {
-//		PoolProperties properties = new PoolProperties();
-//		properties.setDriverClassName("com.mysql.jdbc.Driver");
-//		properties.setUrl(DatabaseInfo.MYSQL_DATABASE_SERVER);
-//		properties.setUsername(DatabaseInfo.MYSQL_USERNAME);
-//		properties.setPassword(DatabaseInfo.MYSQL_PASSWORD);
-//		properties.setInitialSize(10);
-//		properties.setMaxActive(100);
-//
-//		pool = new DataSource();
-//		pool.setPoolProperties(properties);
-//	}
 }
