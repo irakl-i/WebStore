@@ -34,9 +34,12 @@ public class Products extends HttpServlet {
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\" />");
 		out.println("<title>Student Store</title>");
+
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h3>Here are all products:</h3>");
+		out.println("<h1>Student Store</h1>");
+		out.println("Items available:");
+		out.println("<br />");
 		out.println("<table border=\"1px\">");
 		printTable(out, products);
 		out.println("</table>");
@@ -46,12 +49,9 @@ public class Products extends HttpServlet {
 
 	private void printTable(PrintWriter out, List<Product> products) {
 		for (Product p : products) {
-			out.println("<tr>");
-			out.println("   <td>" + p.getId() + "</td>");
-			out.println("   <td>" + p.getName()  + "</td>");
-			out.println("   <td>" + p.getImage() + "</td>");
-			out.println("   <td>" + p.getPrice() + "</td>");
-			out.println("</tr>");
+			out.println("<ul>");
+			out.println("	<li><a href=\"show-product.jsp?id=" + p.getId() + "\"</a>" + p.getName()  + "</li>");
+			out.println("</ul>");
 		}
 	}
 }
