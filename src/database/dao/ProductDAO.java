@@ -1,6 +1,5 @@
 package database.dao;
 
-import com.mysql.jdbc.exceptions.MySQLDataException;
 import database.DatabaseContract;
 import database.DatabaseInfo;
 import database.bean.Product;
@@ -17,7 +16,7 @@ public class ProductDAO {
 		this.pool = dataSource;
 	}
 
-	public List<Product> getProducts() {
+	public List<Product> getProductById() {
 		List<Product> products = new ArrayList<>();
 
 		Connection connection = null;
@@ -48,8 +47,8 @@ public class ProductDAO {
 		return products;
 	}
 
-	public List<Product> getProducts(String id) {
-		List<Product> products = new ArrayList<>();
+	public Product getProductById(String id) {
+		Product product = null;
 
 		Connection connection = null;
 		try {
@@ -63,9 +62,9 @@ public class ProductDAO {
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
-			while (resultSet.next()) {
-				products.add(fetchProduct(resultSet));
-			}
+			resultSet.next();
+			product = fetchProduct(resultSet);
+
 
 			resultSet.close();
 			statement.close();
@@ -78,14 +77,14 @@ public class ProductDAO {
 			}
 		}
 
-		return products;
+		return product;
 	}
 
 	private Product fetchProduct(ResultSet resultSet) throws SQLException {
 		Product product = new Product();
 		product.setId(resultSet.getString(DatabaseContract.ProductTable.COLUMN_NAME_ID));
 		product.setName(resultSet.getString(DatabaseContract.ProductTable.COLUMN_NAME_NAME));
-		product.setImage(resultSet.getString(DatabaseContract.ProductTable.COLUMN_NAME_IMAGE));
+		product.setImage(resultSet.getString(DatabaseContract.ProductTable.COLUMN_NAME_NAME));
 		product.setPrice(resultSet.getDouble(DatabaseContract.ProductTable.COLUMN_NAME_PRICE));
 
 		return product;

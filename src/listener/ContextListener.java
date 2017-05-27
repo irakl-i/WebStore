@@ -1,33 +1,18 @@
-package listener; /**
- * Created by Luka on 25/5/17.
- */
+package listener;
 
 import database.DatabaseInfo;
 import database.dao.ProductDAO;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-import javax.naming.Context;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-import javax.servlet.http.HttpSessionBindingEvent;
 
 @WebListener()
-public class ContextListener implements ServletContextListener{
-	// -------------------------------------------------------
-	// ServletContextListener implementation
-	// -------------------------------------------------------
+public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
-	  /* This method is called when the servlet context is
-         initialized(when the Web application is deployed). 
-         You can initialize servlet context related data here.
-      */
-
 		ServletContext context = sce.getServletContext();
 		try {
 			PoolProperties properties = new PoolProperties();
@@ -42,8 +27,7 @@ public class ContextListener implements ServletContextListener{
 			pool.setPoolProperties(properties);
 			context.setAttribute(ContextKey.CONNECTION_POOL, pool);
 
-			ProductDAO dao = new ProductDAO(pool);
-			context.setAttribute(ContextKey.DAO, dao);
+			context.setAttribute(ContextKey.DAO, new ProductDAO(pool));
 		} catch (Exception ignored) {
 		}
 	}

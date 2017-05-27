@@ -1,11 +1,10 @@
-package listener; /**
- * Created by Luka on 26/5/17.
- */
+package listener;
 
-import javax.servlet.ServletContextEvent;
+import database.bean.Product;
+import model.Items;
+
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -17,10 +16,11 @@ public class SessionListener implements HttpSessionListener {
 	// -------------------------------------------------------
 	public void sessionCreated(HttpSessionEvent se) {
 		HttpSession session = se.getSession();
+		session.setAttribute(SessionKey.ITEMS, new Items());
 	}
 
 	public void sessionDestroyed(HttpSessionEvent se) {
-      /* Session is destroyed. */
+	  /* Session is destroyed. */
 	}
 
 }
