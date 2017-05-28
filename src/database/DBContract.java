@@ -1,7 +1,7 @@
 package database;
 
-public final class DatabaseContract {
-	private DatabaseContract() {
+public final class DBContract {
+	private DBContract() {
 	}
 
 	public static class ProductTable {

@@ -13,6 +13,11 @@ public class Items extends HashMap implements Iterable<Map.Entry> {
 		map = new HashMap<>();
 	}
 
+	/**
+	 * Checks if the product exists and adds it to the map
+	 * or increments its value.
+	 * @param product
+	 */
 	public void add(Product product) {
 		if (!map.containsKey(product)) {
 			map.put(product, 1);
@@ -21,6 +26,12 @@ public class Items extends HashMap implements Iterable<Map.Entry> {
 		}
 	}
 
+	/**
+	 * Updates the value of the product. Removes it
+	 * from the map if quantity is less than 0.
+	 * @param product
+	 * @param quantity
+	 */
 	public void update(Product product, int quantity) {
 		if (quantity <= 0) {
 			map.remove(product);
@@ -29,17 +40,14 @@ public class Items extends HashMap implements Iterable<Map.Entry> {
 		}
 	}
 
-	public int get(Product product) {
-		return map.get(product);
-	}
-
+	/**
+	 * Returns the size of the map.
+	 * @return items size
+	 */
 	public int size() {
 		return map.size();
 	}
 
-	public boolean contains(Product product) {
-		return map.containsKey(product);
-	}
 
 	@Override
 	public Iterator iterator() {

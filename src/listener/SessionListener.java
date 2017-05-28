@@ -10,11 +10,8 @@ import javax.servlet.http.HttpSessionListener;
 
 @WebListener()
 public class SessionListener implements HttpSessionListener {
-
-	// -------------------------------------------------------
-	// HttpSessionListener implementation
-	// -------------------------------------------------------
 	public void sessionCreated(HttpSessionEvent se) {
+		// Create new Items data structure in user session.
 		HttpSession session = se.getSession();
 		session.setAttribute(SessionKey.ITEMS, new Items());
 	}

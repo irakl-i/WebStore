@@ -17,17 +17,19 @@ import java.util.List;
 @WebServlet(name = "Products", urlPatterns = {"/Products", "/index.html"})
 public class Products extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Forward post request to get.
 		doGet(request, response);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
 		ProductDAO dao = (ProductDAO) context.getAttribute(ContextKey.DAO);
-		List<Product> products = dao.getProductById();
+		List<Product> products = dao.getProducts();
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
+		// Print html page with list of products "dynamically".
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
@@ -45,6 +47,11 @@ public class Products extends HttpServlet {
 		out.println("</html>");
 	}
 
+	/**
+	 * Prints products with links.
+	 * @param out writer
+	 * @param products list of products
+	 */
 	private void printList(PrintWriter out, List<Product> products) {
 		for (Product p : products) {
 			out.println("<ul>");

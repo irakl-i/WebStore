@@ -17,10 +17,10 @@
 </h1>
 <img src="<%="/store-images/" + product.getImage() %>" alt="<%= product.getName() %>">
 
-<%--<form action="Cart" method="post">--%>
-<%--$<%= product.getPrice() %> <input name="id" type="hidden" value="<%= product.getId() %>"/>--%>
-<%--<input type="submit" value="Add to Cart"/>--%>
-<%--</form>--%>
+<form action="Cart" method="post">
+    $<%= product.getPrice() %> <input name="id" type="hidden" value="<%= product.getId() %>"/>
+    <input type="submit" value="Add to Cart"/>
+</form>
 
 </body>
 </html>
