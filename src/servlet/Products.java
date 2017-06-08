@@ -34,6 +34,11 @@ public class Products extends HttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\" />");
+		out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css\"\n" +
+				"          integrity=\"sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ\" crossorigin=\"anonymous\">\n" +
+				"    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js\"\n" +
+				"            integrity=\"sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn\"\n" +
+				"            crossorigin=\"anonymous\"></script>");
 		out.println("<title>Student Store</title>");
 		out.println("</head>");
 		out.println("<body>");
@@ -49,13 +54,14 @@ public class Products extends HttpServlet {
 
 	/**
 	 * Prints products with links.
-	 * @param out writer
+	 *
+	 * @param out      writer
 	 * @param products list of products
 	 */
 	private void printList(PrintWriter out, List<Product> products) {
 		for (Product p : products) {
 			out.println("<ul>");
-			out.println("	<li><a href=\"show-product.jsp?id=" + p.getId() + "\"</a>" + p.getName()  + "</li>");
+			out.println("	<li><a href=\"show-product.jsp?id=" + p.getId() + "\"</a>" + p.getName() + "</li>");
 			out.println("</ul>");
 		}
 	}
